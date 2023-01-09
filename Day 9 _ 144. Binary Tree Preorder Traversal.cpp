@@ -50,7 +50,6 @@ public:
             // push right first ( to be done latest )  
             if ( top->right != NULL ) stk.push( top->right ); 
             
-            // push right first ( to be done latest )  
             if ( top->left  != NULL ) stk.push( top->left  );
             
             // get the top itself ( it's preorder one )
