@@ -48,7 +48,7 @@ public:
 
 
 // why keep track of nulls ? 
-// as diffrent structure trees may have same preorder traversal [ no gurantee on unique structure ]
+// as diffrent structure trees may have same preorder/ inorder / postorder traversal [ no gurantee on unique structure ]
 
 // study examples :: 
 
