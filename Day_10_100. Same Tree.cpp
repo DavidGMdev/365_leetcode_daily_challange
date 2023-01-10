@@ -40,3 +40,53 @@ public:
 };
 
 
+
+
+// ########################################################################################
+// solution 2 : using normal traversal as ( preorder ) but keep track of nulls you meet 
+// ########################################################################################
+
+
+// why keep track of nulls ? 
+// as diffrent structure trees may have same preorder traversal [ no gurantee on unique structure ]
+
+// study examples :: 
+
+// [1,2,3]
+// [1,2,null,3]
+// diffrent trees but has the same non-null pre order of 1,2,3
+
+// [1,2,3]
+// [3,1,null,2]
+// diffrent trees but has the same non-null in order of 2,1,3
+
+
+// [1,2,3]
+// [1,3,null,2]
+// diffrent trees but has the same non-null post order of 2,3,1
+
+
+// test using preorder 
+class Solution {
+public:
+    const int inf = 0x3f3f3f3f ; // for null reprsentation 
+    
+
+
+    void dfs( TreeNode* node , vector<int> & ans ) {
+        if ( node == NULL ) {
+            ans.push_back(inf); // keep track of nulls
+            return ; 
+        }
+        ans.push_back(node->val);
+        dfs( node->left  , ans ) ;
+        dfs( node->right , ans ) ; 
+    }
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        vector<int> a , b ; 
+        dfs(p,a) , dfs(q,b);
+        return (a == b) ;  
+    }
+}
+
+
