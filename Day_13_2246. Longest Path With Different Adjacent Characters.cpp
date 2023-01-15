@@ -7,7 +7,94 @@
 // Solution 4 : most optimized  
 // ######################################################
 
+class Solution {
+public:
+    // make it directed only parent => child relation 
+    // no need to visited     => as it's directed tree now
+    // no need to path array  => replace using dfs func retruns 
+    int ans = 1 ; 
+    int dfs( int node , const vector<int> adj[] , const string & s ){
+        int l = 0 , r = 0 ;
+        for ( auto &child : adj[node] ) {
+            int res = dfs(child,adj,s);
+            if ( s[node] == s[child] ) continue ; 
+            if (res >= l) r = l , l = res ;
+            else if ( res > r ) r = res ; 
+        }
+        // we gurantee l ,r as max "possible to link" children 
+        // possible cases = { l+1 , r+1 , l+r+1 } = { l+r+1 } always satisfy the max 
+        ans = max(ans,l+r+1) ; 
+        
+        // only return the longest straight path 
+        return l+1;
+    }
+    int longestPath(vector<int>& parent, string s) {
+        int n = s.size();
+        vector<int> adj[n] ; 
+        for( int i = 1 ; i < n ; i++ ) adj[ parent[i] ].push_back(i); // directed from parent to child 
+        dfs(0,adj,s);
+        return ans; 
+    }
+};
 
+/*
+
+////////////////////////
+what OPTIMIZATION ? 
+///////////////////////
+
+
+-------------------------
+### memory level 
+-------------------------
+
+= use just directed graph style [ parent -> child ]
+>>>> remove useless u to v , v to u  complixity 
+>>>> remove useless visited array , since no way to have cycles now 
+
+= make use of function return 
+>>>> remove useless path[] , 
+that store child response for just path it to parent after call end ,
+just use the function return and pass the value ON THE FLY to node parent 
+
+
+= move adjacency list to main and pass as refrence in param 
+>>>> solve wastage of adj[N] , max memeory declared for all testcases regaradless actual size 
+
+all this opt, make diffrence in exection time and get high beat in submission time , memeory beat %
+
+and that's it <3
+
+
+*/
+
+/*
+
+/////////////////////////
+Nice Hint ::
+/////////////////////////
+
+[ Accepted ]
+int res = dfs(child,adj,s);
+if ( s[node] == s[child] ) continue ;
+
+vs 
+
+[ Wrong Answer ]
+if ( s[node] == s[child] ) continue ;
+int res = dfs(child,adj,s);
+
+why ? xd 
+simply the unlucky one whose parent is adjacent with ,
+will STARVE totally and all it's children subtree ,
+as here in directed tree no way to node else it's parent 
+so the lastest code results a totally un discovered subtrees in some cases 
+
+[ take care ]
+[ think twice , code once ]
+
+
+*/
 
 // ######################################################
 // Solution 3 : less code , more optimized  
