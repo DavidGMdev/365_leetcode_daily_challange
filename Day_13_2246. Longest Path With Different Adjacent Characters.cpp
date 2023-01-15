@@ -2,6 +2,21 @@
 // main idea
 // ######################################################
 
+/*
+the main idea here is that parent node feed on their children nodes results ,
+where each parent recives values from children and build on it it's own result 
+
+at each node we make descion of that we have two possible ways ?
+
+= construct a straight path and continue to the next [ upper ] parent
+>>> with the max path it recives from it's children +1
+>>> and path it to it's parent 
+
+
+= construct a bended path , that this node will be the joint of it /\
+>>>> with the max 2 paths it recives from it's children +1 
+
+*/
 
 // ######################################################
 // Solution 4 : most optimized  
