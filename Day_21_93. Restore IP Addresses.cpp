@@ -27,3 +27,33 @@ public:
         return possible ;
     }
 };
+
+/*
+
+Testcase contribute :::
+
+spare.size() <= 3 
+old solution without this condition
+got AC instead of RE verdict 
+must got RE due to using stoll on 20 digit string in worst case 
+
+I contribute the testcase to Leetcode and got 100 Coin :)
+
+testcase here : 
+on input "99999999999999999999" or any large samples ,
+
+issue here : [ISSUE](https://github.com/LeetCode-Feedback/LeetCode-Feedback/issues/11189)
+
+how to fix :
+just make sure of each partiton not exceeding 
+long long limit or even 3 digits maximum for 
+this problem satatement 
+
+==> spare.size() <= 3 
+
+and also may do more optimizations 
+in for loop generating indexes to avoid usless checks
+or in begin of the function to check is those partations valid sized partitions or not 
+
+*/
+
