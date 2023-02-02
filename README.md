@@ -6,7 +6,7 @@
     - [x] January ( done )
 
 
-![badge1](https://user-images.githubusercontent.com/75450076/216053267-68c436fb-67c1-44ec-afca-028166a83acd.JPG)
+![badge1](https://leetcode.com/static/images/badges/2023/gif/2023-01.gif)
 
 
     - [.] February ( in progress )
