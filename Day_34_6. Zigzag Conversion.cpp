@@ -1,7 +1,6 @@
 class Solution {
 public:
     string convert(string & s, int & numRows) {
-        const int N = 1e3 ; 
         int n = s.size() , m = numRows , l = 0 ;
         vector<string> grid(m) ;
         while( l < n ){
