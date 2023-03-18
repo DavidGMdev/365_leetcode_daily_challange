@@ -1,4 +1,46 @@
 // ##################################################
+// solution 2.1 : more simple code for LL solution
+// ##################################################
+
+class BrowserHistory {
+public:
+    class Node {
+        public : 
+            string url ;
+            Node *prev , *nxt ; 
+            Node(){
+                this->prev = NULL ; 
+                this->url  = ""  ;
+                this->nxt  = NULL  ; 
+            }
+            Node( Node* prev , string url , Node* nxt ){
+                this->prev = prev ; 
+                this->url  = url  ;
+                this->nxt  = nxt  ; 
+            }
+    };
+    Node *head , *curr ;
+    BrowserHistory(string homepage) {
+        head = new Node(NULL,homepage,NULL);
+        curr = head ; // iterate on Linked list using it  
+    }
+    void visit(string url) {
+        curr->nxt = new Node(curr,url,NULL);
+        curr = curr->nxt; // move to visit it 
+    }
+    string back(int steps) {
+       while( steps-- && curr->prev != NULL ) curr = curr->prev ;
+       return curr->url; // worst case is homepage 
+    }
+    
+    string forward(int steps) {
+       while( steps-- && curr->nxt != NULL ) curr = curr->nxt ; 
+       return curr->url; // worst case is latest pushed/visted page 
+    }
+};
+
+
+// ##################################################
 // solution 2 : using DLL ( Doubly linked list )
 // ##################################################
 
