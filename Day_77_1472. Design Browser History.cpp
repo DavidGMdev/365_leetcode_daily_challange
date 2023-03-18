@@ -1,3 +1,61 @@
+// ##################################################
+// solution 2 : using DLL ( Doubly linked list )
+// ##################################################
+
+class BrowserHistory {
+public:
+    class Node {
+        public : 
+            string url = "" ;
+            Node* prev = NULL ;
+            Node* nxt  = NULL ; 
+            Node( string x ){
+                this->url = x; 
+            }
+    };
+
+    class DLL {
+        public : 
+            Node* head = NULL ;
+            Node* curr = NULL ; 
+            Node* tail = NULL ; // btw it's useless xD
+    };
+
+    DLL* hist = NULL ; // represents the history of browser object 
+    
+    BrowserHistory(string homepage) {
+        hist = new DLL();
+        hist->head = new Node(homepage);
+        hist->tail = hist->curr = hist->head;
+    }
+
+    void visit(string url) {
+        hist->curr->nxt = new Node(url);
+        hist->curr->nxt->prev = hist->curr;
+        hist->curr->nxt->nxt = NULL ;
+        hist->curr = hist->curr->nxt;
+    }
+    
+    string back(int steps) {
+       while( steps-- && hist->curr->prev != NULL ) {
+           hist->curr = hist->curr->prev ;
+       }
+       return hist->curr->url;
+    }
+    
+    string forward(int steps) {
+       while( steps-- && hist->curr->nxt != NULL ) {
+            hist->curr = hist->curr->nxt ;
+       }
+       return hist->curr->url;
+    }
+
+};
+
+// ##################################################
+// solution 1 : using Stack
+// ##################################################
+
 class BrowserHistory {
 public:
     stack<string> s1 , s2 , emp;
