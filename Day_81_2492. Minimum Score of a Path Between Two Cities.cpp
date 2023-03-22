@@ -19,7 +19,7 @@ public:
         }
         int ans = INT_MAX ;
         for(auto & road : roads){
-            if( get(road[0]) == get(0) || get(road[1]) == get(0) ) {
+            if( get(road[0]) == get(0) ) {
                 ans = min(ans, road[2]);
             }
         }
