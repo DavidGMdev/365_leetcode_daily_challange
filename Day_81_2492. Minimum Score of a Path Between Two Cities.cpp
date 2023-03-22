@@ -26,3 +26,33 @@ public:
         return ans;
     }
 };
+// ###############################
+// another solution using DFS
+// ###############################
+
+class Solution {
+public:
+
+    void dfs( int curr , vector<vector<pair<int,int>>> & edg , vector<bool>&vis , int & ans ){
+        if( vis[curr] ) return ;
+        vis[curr] = true ;
+        for(auto & edge : edg[curr]){
+            ans = min(edge.first , ans) ; 
+            dfs(edge.second,edg,vis,ans) ;
+        }
+    }
+    int minScore(int n, vector<vector<int>>& roads) {
+        vector<vector<pair<int,int>>> edg(n); // w, node => edges
+        vector<bool>vis(n,false);
+
+        for( auto & road : roads ){
+            road[0]-- , road[1]--;
+            edg[ road[0] ].push_back( { road[2] , road[1] } ) ;
+            edg[ road[1] ].push_back( { road[2] , road[0] } ) ;
+        }
+        int ans = INT_MAX ;
+        // all visited edges are strongly coneected component => can minimize 
+        dfs(0,edg,vis,ans); 
+        return ans ;
+    }
+};
