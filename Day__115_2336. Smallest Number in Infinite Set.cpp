@@ -6,11 +6,11 @@ public:
     SmallestInfiniteSet() {}
     int popSmallest() {
         if( q.empty() || curr < q.top() ){
-            curr++;
-            return curr-1;
+            return curr++;
         }
         else{
-            int trg = q.top(); q.pop();
+            int trg = q.top();
+            q.pop();
             q_vis[trg] = false;
             return trg;
         }
