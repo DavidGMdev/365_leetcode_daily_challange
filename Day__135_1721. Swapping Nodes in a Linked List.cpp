@@ -8,11 +8,11 @@ public:
         // using lazy pointer 
         ListNode *kth , *curr , *lazy ;
         curr = kth = lazy = head;
-        while(curr->next&&--k) curr = curr->next ;
+        while(curr->next&&--k) curr = curr->next ; 
         kth = curr;
         while(curr->next){ 
-            // this loops move n-k+1 , 
-            // so the lazy one ends where we need to 
+            // this loops moves n-k step , 
+            // so the lazy one ends where we need to 1+(n-k) = n-k+1 postion
             curr = curr->next ;
             lazy = lazy->next ;
         }
