@@ -27,8 +27,11 @@
     
 ![badge5](https://leetcode.com/static/images/badges/2023/gif/2023-05.gif)
 
-    - [.] June ( in progress )
-    - [] July
+    - [x] June ( done )
+    
+![badge6](https://leetcode.com/static/images/badges/2023/gif/2023-06.gif)
+
+    - [.] July ( in progress )
     - [] August 
     - [] September 
     - [] October
